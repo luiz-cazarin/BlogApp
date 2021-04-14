@@ -21,4 +21,6 @@
  </p>
  <p>
   Registrar usuario<br>
+  Login<br>
+  Logout<br>
  </p>

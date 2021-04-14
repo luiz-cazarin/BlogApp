@@ -30,12 +30,17 @@ require('./config/auth')(passport)
     app.use(passport.session())
     
 
+    
     app.use(flash())
     // middleware
         app.use((req,  res, next) => {
             res.locals.success_msg = req.flash("success_msg")
-            res.locals.erro_msg = req.flash("erro_msg")
+            res.locals.error_msg = req.flash("error_msg")
             res.locals.error = req.flash("error")
+            // a variavel user armazena os dados do usuario autenticado
+            // req.user criado automaticamente pelo passport, que armazena dados do usuario logado
+            // caso nao exia usuario logado, user vai receber o valor null
+            res.locals.user = req.user || null;
             next()
         })
     // bodyParser
@@ -55,7 +60,6 @@ require('./config/auth')(passport)
         app.use(express.static(path.join(__dirname, "public")))
 
         app.use((req, res, next) => {
-            console.log("oi eu sou um middleware")
             next()
         })
 // rotas

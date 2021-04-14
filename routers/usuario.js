@@ -52,7 +52,8 @@ router.post("/registro", (req, res) => {
                 const novoUsuario = new Usuario({
                     nome: req.body.nome,
                     email: req.body.email,
-                    senha: req.body.senha
+                    senha: req.body.senha,
+                    eAdmin: req.user.eAdmin
                 })
                 //Encriptar a senha antes de salvar
                 //Usamos o bcrypt
@@ -112,5 +113,13 @@ router.post("/login", (req, res, next) => {
 //  vamos utilizar a estrategia  local  (passport-local), usamos o nosso proprio banco de dados
 // Instalamos o passport na pasta do projeto (npm install --save passport)
 // Instalar o projeto que vamos usaar (npm install --save passport-local)
+
+
+router.get("/logout", (req, res) =>{
+    req.logout()
+    req.flash("success_msg", "Deslogado com sucesso")
+    res.redirect("/")
+})
+
 
 module.exports = router

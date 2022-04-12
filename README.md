@@ -10,6 +10,9 @@
  
 </p>
 
+## Para subir o projeto localmente
+npm node.js
+
 # Funcionalidades
 <p>
   Publicar postagens<br>
